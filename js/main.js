@@ -64,6 +64,14 @@ function authorized() {
 
   buttonOut.addEventListener('click', logOut);
 
+
+  cardsRestaurants.addEventListener('click', openGoods);
+
+  logo.addEventListener('click', () => {
+  containerPromo.classList.remove('hide');
+    restaurants.classList.remove('hide');
+    menu.classList.add('hide');
+  });
 }
 
 function noAuthorized() {
@@ -85,6 +93,10 @@ function noAuthorized() {
       } else {
           loginAuth.style.borderColor = '#ff0000';
       }
+
+      
+
+
       
   }
 
@@ -150,9 +162,10 @@ function createCardGood() {
 }
 
 
-createCardsRestaurants();
+
 function openGoods(event) {
   const target = event.target;
+  if (login) {
   const restaurant = target.closest('.cards-restaurants');
   console.log(restaurant);
   if (restaurant) {
@@ -161,18 +174,34 @@ function openGoods(event) {
     menu.classList.remove('hide');
     cardsMenu.textContent = '';
     createCardGood();
+    createCardGood();
+    createCardGood();
   }
-  
+} else {
+  toggleModalAuth();
+
 }
+}
+    
+createCardsRestaurants();
 
 
 
-cardsRestaurants.addEventListener('click', openGoods);
-logo.addEventListener('click', () => {
-  containerPromo.classList.remove('hide');
-    restaurants.classList.remove('hide');
-    menu.classList.add('hide');
-});
+  
 
 cartButton.addEventListener("click", toggleModal);
 close.addEventListener("click", toggleModal);
+
+// Slider
+ 
+new Swiper('.swiper-container', {
+  slidesPerView: 1,
+  loop: true,
+  autoplay: true,
+  effect: 'flip',
+  grapCursor: true,
+  cubeEffect: {
+    shadow: false
+  }
+});
+
